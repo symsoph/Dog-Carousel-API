@@ -33,7 +33,7 @@ The following EXTRA features are implemented:
 
 ## API Choice
 
-My chosen API for this project is **https://collectionapi.metmuseum.org/public/collection/v1/objects**.
+My chosen API for this project is **https://collectionapi.metmuseum.org/public/collection/v1/objects/400**.
 
 ## Video Demo
 
