@@ -24,14 +24,18 @@ class MainActivity : AppCompatActivity() {
     var departmentName = ""
 
     private lateinit var petList: MutableList<String>
+     lateinit var idList: MutableList<String>
     private lateinit var rvPets: RecyclerView
+    private lateinit var rvPetsID: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         rvPets = findViewById(R.id.pet_list)
+        rvPetsID = findViewById(R.id.imageId_list)
         petList = mutableListOf()
+        idList = mutableListOf()
         getDogImageURL()
 
         //Log.d("imageURL", " image URL set")
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                     --i
                     getArtImageURL()
                 }
-                val adapter = PetAdapter(petList)
+                val adapter = PetAdapter(petList, idList)
                 rvPets.adapter = adapter
                 rvPets.layoutManager = LinearLayoutManager(this@MainActivity)
                 rvPets.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
@@ -92,22 +96,35 @@ class MainActivity : AppCompatActivity() {
         }]
     }
 
-    private fun getDogImageURL() {
+     fun getDogID(number: Int) : String {
+        val array = idList
+        val photoId = array.get(number)
+        return photoId
+    }
+
+     fun getDogImageURL() {
         val client = AsyncHttpClient()
         //var picArray = arrayOf<String>("shibes", "birds", "cats")
         //var animal = Random.nextInt(2)
         //var clientURL = "https://shibe.online/api/" + picArray[animal] + "?count=2&urls=true&httpsUrls=true" --> want https://dog.ceo/api/breeds/image/random/20
-        client["https://shibe.online/api/shibes?count=20&urls=true&httpsUrls=true", object : JsonHttpResponseHandler() {
+        client["https://shibe.online/api/shibes?count=20&urls=false&httpsUrls=true", object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
                 Log.d("Dog", "response successful$json")
                 val imageArray = json.jsonArray
-                for (i in 0 until 19) {
-                    petList.add(imageArray.getString(i))
+                for (i in 0 until 20) {
+                    petList.add("https://cdn.shibe.online/shibes/" + imageArray.getString(i) + ".jpg")
+                    idList.add(imageArray.getString(i))
                }
-                val adapter = PetAdapter(petList)
+                val adapter = PetAdapter(petList, idList)
                 rvPets.adapter = adapter
                 rvPets.layoutManager = LinearLayoutManager(this@MainActivity)
                 rvPets.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
+
+                //for photo ID
+//                val adapterId = PetAdapter(idList)
+//                rvPetsID.adapterId = adapter
+//                rvPetsID.layoutManager = LinearLayoutManager(this@MainActivity)
+//                rvPetsID.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
             }
 
             override fun onFailure(

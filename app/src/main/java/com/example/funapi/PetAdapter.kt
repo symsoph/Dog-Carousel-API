@@ -7,18 +7,23 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import android.widget.TextView
 
 
+class PetAdapter (private val petList: List<String>, private val idList: List<String>) : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
 
-class PetAdapter (private val petList: List<String>) : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val petImage: ImageView
-
+        val imageIndex: TextView
+        val id: TextView
         init {
             // Find our RecyclerView item's ImageView for future use
             petImage = view.findViewById(R.id.pet_image)
+            //view variables
+            imageIndex = view.findViewById<TextView>(R.id.indexOfImage)
+            id = view.findViewById<TextView>(R.id.imageID)
         }
     }
 
@@ -34,10 +39,19 @@ class PetAdapter (private val petList: List<String>) : RecyclerView.Adapter<PetA
         override fun getItemCount() = petList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        var photoNum = position+1
         Glide.with(holder.itemView)
             .load(petList[position])
             .centerCrop()
             .into(holder.petImage)
+        //setting the texts - ok
+        holder.imageIndex.text = "Shiba Photo $photoNum"
+        holder.id.text = "ID: " + idList[position]
+        //Glide on top of Glide
+//        Glide.with(holder.itemView)
+//            .load(idList[position])
+//            .centerCrop()
+//            .into(holder.petImage)
 
         // `holder` can used to reference any View within the RecyclerView item's layout file
         holder.petImage.setOnClickListener {
