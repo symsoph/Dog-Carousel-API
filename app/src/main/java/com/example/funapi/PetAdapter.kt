@@ -45,8 +45,8 @@ class PetAdapter (private val petList: List<String>, private val idList: List<St
             .centerCrop()
             .into(holder.petImage)
         //setting the texts - ok
-        holder.imageIndex.text = "Shiba Photo $photoNum"
-        holder.id.text = "ID: " + idList[position]
+        holder.imageIndex.text = " Shiba Photo $photoNum "
+        holder.id.text = " ID: " + idList[position] + " "
         //Glide on top of Glide
 //        Glide.with(holder.itemView)
 //            .load(idList[position])
@@ -55,7 +55,7 @@ class PetAdapter (private val petList: List<String>, private val idList: List<St
 
         // `holder` can used to reference any View within the RecyclerView item's layout file
         holder.petImage.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Doggo at position $position clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(holder.itemView.context, "Doggo at position $photoNum clicked", Toast.LENGTH_SHORT).show()
         }
     }
 }

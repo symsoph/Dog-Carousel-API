@@ -18,10 +18,6 @@ import org.w3c.dom.Text
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    var imageURL = ""
-    var periodDate = ""
-    var objectTitle = ""
-    var departmentName = ""
 
     private lateinit var petList: MutableList<String>
      lateinit var idList: MutableList<String>
@@ -31,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //might need to specify val title
         rvPets = findViewById(R.id.pet_list)
         rvPetsID = findViewById(R.id.imageId_list)
         petList = mutableListOf()
@@ -51,56 +47,6 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-
-    private fun getArtImageURL() {
-        val client = AsyncHttpClient()
-        var objectId = Random.nextInt(from = 37, until = 47899)
-        var clientURL = "https://collectionapi.metmuseum.org/public/collection/v1/objects/" + objectId
-        client[clientURL, object : JsonHttpResponseHandler() {
-            override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
-                Log.d("Art", "response successful$json")
-                //var resultsJSON = json.jsonObject.getJSONObject(0)
-                //imageURL = resultsJSON.getString("url")
-                imageURL = json.jsonObject.getString("primaryImageSmall")
-                periodDate = json.jsonObject.getString("period")
-                objectTitle = json.jsonObject.getString("title")
-                departmentName = json.jsonObject.getString("department")
-//                if (imageURL.isNullOrBlank()) {
-//                    getArtImageURL()
-//                }
-//                if (periodDate.isBlank()) {
-//                    periodDate = "Unknown"
-//                }
-
-                var i = 9
-                while (i > 5) {
-                    petList.add(imageURL)
-                    --i
-                    getArtImageURL()
-                }
-                val adapter = PetAdapter(petList, idList)
-                rvPets.adapter = adapter
-                rvPets.layoutManager = LinearLayoutManager(this@MainActivity)
-                rvPets.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
-            }
-
-
-            override fun onFailure(
-                statusCode: Int,
-                headers: Headers?,
-                errorResponse: String,
-                throwable: Throwable?
-            ) {
-                Log.d("Art Error", errorResponse)
-            }
-        }]
-    }
-
-     fun getDogID(number: Int) : String {
-        val array = idList
-        val photoId = array.get(number)
-        return photoId
-    }
 
      fun getDogImageURL() {
         val client = AsyncHttpClient()
