@@ -1,55 +1,48 @@
-<!-- (This is a comment) INSTRUCTIONS: Go through this page and fill out any **bolded** entries with their correct values.-->
-
-# AND101 Project 5 - Choose Your Own API
+# AND101 Project 7 - CYOAPI Part 3: Beautified
 
 Submitted by: **Sofia**
 
-Time spent: **12** hours spent in total
+Time spent: **5** hours spent in total
 
 ## Summary
 
-**RandArt** is an android app that **that displays basic information and a photo of random objects at the MET museum**
+**Dog Carousel** is an android app that **displays a scrollable list of shibes from the shibe.online API**
 
-If I had to describe this project in three (3) emojis, they would be: **🔥🕸️🙃**
+If I had to describe this project in three (3) emojis, they would be: **👀🔎🕵️‍♂️**
 
 ## Application Features
 
 
 The following REQUIRED features are completed:
 
-- [X] Make an API call to an API of your choice using AsyncHTTPClient
-- [X] Display at least three (3) pieces of data for each API entry retrieved
-- [X] A working Button requests a new API entry and updates the data displayed
+- [X] App contains a RecyclerView that displays a list of scrollable data
+- [X] App displays at least two (2) pieces of data for each RecyclerView item
+- [X] Use a downloadable font with custom color and size
+- [X] Modify the theme of the app in `themes.xml`
+- [X] Define and apply at least one style in **either** `themes.xml` or a new file `styles.xml`
 
 The following STRETCH features are implemented:
 
-- [ ] Add a query to the API request
-  - The query I added is **FILL IN HERE**
-- [ ] Build a UI to allow users to add that query
+- [ ] Update the night theme to use different versions of styles when in dark mode
+- [ ] Use different drawables when in dark mode
 
 The following EXTRA features are implemented:
 
 - [ ] List anything else that you added to improve the app!
 
-## API Choice
-
-My chosen API for this project is **https://collectionapi.metmuseum.org/public/collection/v1/objects/400**.
-
 ## Video Demo
 
 Here's a video / GIF that demos all of the app's implemented features:
 
-<img src='https://i.imgur.com/KT8Y2Tz.gif' title='Video Demo' width='' alt='Video Demo' />
+<img src='https://i.imgur.com/934X11t.gif' title='Video Demo' width='' alt='Video Demo' />
 
 GIF created with **ScreenToGif**
-
 
 ## Notes
 
 Here's a place for any other notes on the app, it's creation process, or what you learned this unit!
 
-I had a hard time finding an API that was easy enough to use and understand how to use.  So that part took a while, but the lab was helpful for this project. I wish we went over
-how to manipulate JSON. Still had some fun though.
+In the future, I would like to add buttons to refresh the images on the app, add clickable links and implement a dark mode button.
 
 ## License
 
