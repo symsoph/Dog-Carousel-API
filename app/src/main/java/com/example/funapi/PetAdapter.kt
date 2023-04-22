@@ -16,14 +16,11 @@ class PetAdapter (private val petList: List<String>, private val idList: List<St
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val petImage: ImageView
-        val imageIndex: TextView
-        val id: TextView
+
         init {
             // Find our RecyclerView item's ImageView for future use
             petImage = view.findViewById(R.id.pet_image)
-            //view variables
-            imageIndex = view.findViewById<TextView>(R.id.indexOfImage)
-            id = view.findViewById<TextView>(R.id.imageID)
+
         }
     }
 
@@ -44,16 +41,7 @@ class PetAdapter (private val petList: List<String>, private val idList: List<St
             .load(petList[position])
             .centerCrop()
             .into(holder.petImage)
-        //setting the texts - ok
-        holder.imageIndex.text = " Shiba Photo $photoNum "
-        holder.id.text = " ID: " + idList[position] + " "
-        //Glide on top of Glide
-//        Glide.with(holder.itemView)
-//            .load(idList[position])
-//            .centerCrop()
-//            .into(holder.petImage)
 
-        // `holder` can used to reference any View within the RecyclerView item's layout file
         holder.petImage.setOnClickListener {
             Toast.makeText(holder.itemView.context, "Doggo at position $photoNum clicked", Toast.LENGTH_SHORT).show()
         }
